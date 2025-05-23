@@ -6,6 +6,8 @@
 
 git config --global http.proxy socks5://127.0.0.1:7897
 
+$ git config --global --list  #显示你的 Git 全局配置文件
+
 
 
 使用分布控制，避免意外的覆盖
