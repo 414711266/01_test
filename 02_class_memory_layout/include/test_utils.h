@@ -47,3 +47,8 @@ inline void print_title(const std::string& title)
     std::cout << ANSI_BOLD << ANSI_REVERSE << ANSI_WHITE << " " << title << " " << ANSI_RESET << std::endl;
     std::cout << std::endl;
 }
+
+// 打印分隔线
+inline void print_separator() {
+    std::cout << ANSI_BOLD << ANSI_BLUE << std::string(60, '=') << ANSI_RESET << std::endl;
+}
