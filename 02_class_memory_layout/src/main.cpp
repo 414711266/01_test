@@ -1,6 +1,7 @@
 ﻿#include "../include/class_types.h"
 #include "../include/test_utils.h"
 #include <windows.h>
+
 void test_empty_class();
 
 int main()
