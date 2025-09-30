@@ -28,7 +28,7 @@ void print_class_info(const std::string& class_name)
     std::cout << ANSI_GREEN << "Size: " << ANSI_RESET << sizeof(T) << " bytes" << std::endl; 
     std::cout << ANSI_YELLOW << "Alignment: " << ANSI_RESET << alignof(T) << " bytes" << std::endl;
     std::cout << ANSI_MAGENTA << "Type name: " << ANSI_RESET << typeid(T).name() << std::endl;
-    std::cout << std::string(50, '-') << std::endl;
+    std::cout << std::string(40, '-') << std::endl;
 }
 
 template <typename T>
@@ -37,7 +37,7 @@ void print_class_instance_info(const T& instance, const std::string& instance_na
     std::cout << ANSI_BOLD << ANSI_YELLOW << "Instance: " << instance_name << ANSI_RESET << std::endl;
     std::cout << ANSI_GREEN << "Address: " << ANSI_RESET << &instance << std::endl;
     std::cout << ANSI_YELLOW << "Size: " << ANSI_RESET << sizeof(instance) << " bytes" << std::endl;
-    std::cout << std::string(50, '-') << std::endl;
+    std::cout << std::string(40, '-') << std::endl;
 }
 
 // 打印标题

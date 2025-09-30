@@ -7,8 +7,8 @@ class EmptyClass {};
 class MemberVariableClass
 {
 private:
-    int int_member;
-    char char_member;
-    double double_member;
-    bool bool_member;
+    int int_member; // 4 bytes
+    char char_member; // 1 byte
+    double double_member; // 8 bytes
+    bool bool_member; // 1 byte
 };
