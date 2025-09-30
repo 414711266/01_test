@@ -1,6 +1,7 @@
 ﻿#include "../include/class_types.h"
 #include "../include/test_utils.h"
 
+// 测试空类的内存占用
 void test_empty_class()
 {
     print_title("测试1： 空类的内存占用");
@@ -21,6 +22,30 @@ void test_empty_class()
     for (int i = 0; i < 5; ++i) {
         std::cout << "empty_array[" << i << "] address: " << &empty_array[i] << std::endl;
     }
+
+    print_separator();
+}
+
+void test_member_variable_class()
+{
+    print_title("测试2： 包含成员变量的类");
+
+    print_class_info<MemberVariableClass>("MemberVariableClass");
+
+    // 分析成员变量的内存分布
+    std::cout << ANSI_BOLD << ANSI_YELLOW << "成员变量内存分布分析:" << ANSI_RESET << std::endl;
+    std::cout << "int(4 bytes) + char(1 bytes) + double(8 bytes) + bool(1 bytes) = "
+              << (4 + 1 + 8 + 1) << " bytes(理论值)" << std::endl;
+
+    // 测试内存对齐
+    MemberVariableClass obj;
+    char* obj_ptr = reinterpret_cast<char*>(&obj);
+
+    std::cout << ANSI_BOLD << ANSI_MAGENTA << "内存对齐测试" << ANSI_RESET << std::endl;
+    std::cout << "对象地址: " << static_cast<void*>(obj_ptr) << std::endl;
+    std::cout << "地址是否按 " << alignof(MemberVariableClass) << " 字节对齐: "
+              << ((reinterpret_cast<std::uintptr_t>(obj_ptr) % alignof(MemberVariableClass)) == 0 ? "是" : "否") 
+              << std::endl;
 
     print_separator();
 }
