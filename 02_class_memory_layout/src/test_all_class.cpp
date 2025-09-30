@@ -26,6 +26,7 @@ void test_empty_class()
     print_separator();
 }
 
+// 测试包含成员变量的类
 void test_member_variable_class()
 {
     print_title("测试2： 包含成员变量的类");
@@ -46,6 +47,32 @@ void test_member_variable_class()
     std::cout << "地址是否按 " << alignof(MemberVariableClass) << " 字节对齐: "
               << ((reinterpret_cast<std::uintptr_t>(obj_ptr) % alignof(MemberVariableClass)) == 0 ? "是" : "否") 
               << std::endl;
+
+    print_separator();
+}
+
+// 测试包含成员函数的类
+void test_member_function_class()
+{
+    print_title("测试3： 包含成员函数的类");
+
+    print_class_info<MemberFunctionClass>("MemberFunctionClass");
+
+    // 分析成员函数对类的大小影响
+    std::cout << ANSI_BOLD << ANSI_YELLOW << "成员函数对类大小的影响:" << ANSI_RESET << std::endl;
+    std::cout << "成员变量: 2个int (8 bytes)" << std::endl;
+    std::cout << "成员函数数量: 3个 (2个实例函数 + 1个静态函数)" << std::endl;
+    std::cout << "类大小: " << sizeof(MemberFunctionClass) << " bytes" << std::endl;
+    std::cout << "结论: 成员函数不占用对象实例的内存空间" << std::endl;
+
+    // 测试多个实例共享成员函数
+    MemberFunctionClass obj1, obj2;
+    std::cout << ANSI_BOLD << ANSI_MAGENTA << "成员函数共享测试:" << ANSI_RESET << std::endl;
+    std::cout << "obj1地址: " << &obj1 << std::endl;
+    std::cout << "obj2地址: " << &obj2 << std::endl;
+    std::cout << "obj1.set_values函数地址: " << &MemberFunctionClass::set_values << std::endl;
+    std::cout << "obj2.set_values函数地址: " << &MemberFunctionClass::set_values << std::endl;
+    std::cout << "结论: 所有实例共享同一个成员函数" << std::endl;
 
     print_separator();
 }

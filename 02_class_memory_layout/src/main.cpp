@@ -4,6 +4,7 @@
 
 void test_empty_class();
 void test_member_variable_class();
+void test_member_function_class();
 
 int main()
 {
@@ -12,6 +13,7 @@ int main()
  
     test_empty_class();
     test_member_variable_class();
+    test_member_function_class();
     system("pause");
     return 0;
 }
