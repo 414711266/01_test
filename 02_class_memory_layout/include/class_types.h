@@ -35,3 +35,26 @@ public:
         // 静态成员函数，不占用对象内存
     }
 };
+
+// 4、包含虚函数的类
+class VirtualFunctionClass
+{
+private:
+    int data;
+public:
+    //VirtualFunctionClass() : data(0) {}
+
+    virtual void virtual_method()
+    {
+        // 虚函数会增加vptr指针
+    }
+    virtual void another_virtual_method() 
+    {
+        // 多个虚函数只增加一个vptr
+    }
+    
+    void non_virtual_method() 
+    {
+        // 非虚函数不影响内存布局
+    }
+};

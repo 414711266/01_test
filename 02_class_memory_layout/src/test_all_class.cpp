@@ -76,3 +76,44 @@ void test_member_function_class()
 
     print_separator();
 }
+
+// 测试包含虚函数的类
+void test_virtual_function_class()
+{
+    print_title("测试4： 包含虚函数的类");
+
+    print_class_info<VirtualFunctionClass>("VirtualFunctionClass");
+
+    // 分析虚函数对类大小的影响
+    std::cout << ANSI_BOLD << ANSI_YELLOW << "虚函数分析:" << ANSI_RESET << std::endl;
+    std::cout << "成员变量: 1个int (4 bytes)" << std::endl;
+    std::cout << "虚函数数量: 2个" << std::endl;
+    std::cout << "vptr指针: 1个 (" << sizeof(void*) << " bytes)" << std::endl;
+    std::cout << "理论大小: " << 4 + sizeof(void*) << " bytes" << std::endl;
+    std::cout << "实际大小: " << sizeof(VirtualFunctionClass) << " bytes" << std::endl;
+
+    // 验证vptr的存在
+    VirtualFunctionClass obj;
+    void** vptr = reinterpret_cast<void**>(&obj);
+    
+    std::cout << ANSI_BOLD << ANSI_RED << "vptr验证:" << ANSI_RESET << std::endl;
+    std::cout << "对象地址: " << &obj << std::endl;
+    std::cout << "vptr地址: " << vptr << std::endl;
+    std::cout << "vtable地址: " << *vptr << std::endl;
+
+    // 比较有无虚函数的类大小差异
+    class NoVirtualClass {
+    private:
+        int data;
+    public:
+        void non_virtual_method() {}
+    };
+    
+    std::cout << ANSI_BOLD << ANSI_CYAN << "有无虚函数对比:" << ANSI_RESET << std::endl;
+    std::cout << "NoVirtualClass (无虚函数): " << sizeof(NoVirtualClass) << " bytes" << std::endl;
+    std::cout << "VirtualFunctionClass (有虚函数): " << sizeof(VirtualFunctionClass) << " bytes" << std::endl;
+    std::cout << "差异: " << sizeof(VirtualFunctionClass) - sizeof(NoVirtualClass) << " bytes (vptr大小)" << std::endl;
+    
+
+    print_separator();
+}
